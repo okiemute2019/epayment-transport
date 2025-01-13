@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('merchant.header')
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      @include('merchant.navbar')
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        @include('merchant.sidebar')
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-home"></i>
+                </span>Merchant Dashboard
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Buses</h4>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Bus Code</th>
+                              <th>Model</th>
+                              <th>Plate Num</th>
+                              <th>Merchant</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($regBusInfos as $businfo)
+                            <tr>
+                              <td>{{$businfo->bus_code}}</td>
+                              <td>{{$businfo->bus_model}}</td>
+                              <td>{{$businfo->plate_no}}</td>
+                              <td>{{$businfo->merchantname}}</td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          @include('merchant.footer')
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    @include('merchant.scripts')
+  </body>
+</html>

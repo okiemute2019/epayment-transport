@@ -33,9 +33,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.dashboard');
         } elseif($request->user()->role === 'merchant'){
             return redirect()->route('merchant.dashboard');
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
-
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
