@@ -33,6 +33,7 @@ Route::get('/buses/{id}',[CustomerController::class,'getMerchantBuses'])->middle
 
 Route::post('/deposit',[TransactionController::class,'makeDeposit'])->middleware('auth:sanctum');
 Route::post('/transfer',[TransactionController::class,'makeTransfer'])->middleware('auth:sanctum');
+Route::post('/purchaseTicket',[TransactionController::class,'buyTicket'])->middleware('auth:sanctum');
 Route::get('/getbalance',[TransactionController::class,'getBalance'])->middleware('auth:sanctum');
 Route::get('/transactionHistory',[TransactionController::class,'getHistory'])->middleware('auth:sanctum'); 
 
