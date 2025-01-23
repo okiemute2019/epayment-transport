@@ -178,6 +178,8 @@ class TransactionController extends Controller
                             'account_id'=>$merchantID,
                             'amount'=>$ticketAmount,
                             'balance'=>$merchantUser->wallet_balance,
+                            'route'=>$busRoute->routename,
+                            'merchant_id'=>$merchantID,
                             'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                             'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
                         ]]);
