@@ -35,5 +35,6 @@ Route::post('/deposit',[TransactionController::class,'makeDeposit'])->middleware
 Route::post('/transfer',[TransactionController::class,'makeTransfer'])->middleware('auth:sanctum');
 Route::post('/purchaseTicket',[TransactionController::class,'buyTicket'])->middleware('auth:sanctum');
 Route::get('/getbalance',[TransactionController::class,'getBalance'])->middleware('auth:sanctum');
-Route::get('/transactionHistory',[TransactionController::class,'getHistory'])->middleware('auth:sanctum'); 
+Route::get('/transactionHistory',[TransactionController::class,'getHistory'])->middleware('auth:sanctum');
+Route::get('/ticketHistory',[TransactionController::class,'getTickets'])->middleware('auth:sanctum'); 
 

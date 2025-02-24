@@ -141,6 +141,21 @@ class TransactionController extends Controller
         }
     }
 
+    public function getTickets()
+    {
+        if (Auth::check())
+        {
+            $accountID = Auth::user()->id;
+
+            $userTickets = DB::table('transactions')->where('account_id', $accountID)->where('route','<>',null)->orderBy('id')->limit(10)->get();
+            return response()->json($userTickets,200);
+        } else {
+            return response()->json([
+                'message'=>'Invalid Request',
+            ],401);
+        }
+    }
+
     public function buyTicket(Request $request)
     {
         if (Auth::check())
