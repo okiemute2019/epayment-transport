@@ -141,6 +141,33 @@ class TransactionController extends Controller
         }
     }
 
+    public function getWeeklyHistory()
+    {
+        if (Auth::check())
+        {
+            $accountID = Auth::user()->id;
+
+                $userTrackingDeposit = Transaction::where('account_id', $accountID)
+                                    ->where('desc', '=', 'deposit')
+                                    ->sum('amount');
+                
+                $userTrackingCredit = Transaction::where('account_id', $accountID)
+                                    ->where('desc', '=', 'credit')
+                                    ->sum('amount');
+
+                $userTrackingDebit = Transaction::where('account_id', $accountID)
+                                    ->where('desc', '=', 'debit')
+                                    ->sum('amount');
+
+            $userTracking = ['deposits'=>$userTrackingDeposit,'credits'=>$userTrackingCredit,'debits'=>$userTrackingDebit];
+            return response()->json($userTracking,200);
+        } else {
+            return response()->json([
+                'message'=>'Invalid Request',
+            ],401);
+        }
+    }
+
     public function getTickets()
     {
         if (Auth::check())
