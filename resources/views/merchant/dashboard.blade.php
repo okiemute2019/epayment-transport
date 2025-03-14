@@ -35,7 +35,9 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Daily Revenue
                     </h4>
-                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>15,0000</h2>
+                    @if($day_summary)
+                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>{{$day_summary}}</h2>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -45,7 +47,9 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Number of Buses
                     </h4>
-                    <h2 class="mb-5">35</h2>
+                    @if($bus_num)
+                    <h2 class="mb-5">{{$bus_num}}</h2>
+                    @endif
                   </div>
                 </div>
               </div>
