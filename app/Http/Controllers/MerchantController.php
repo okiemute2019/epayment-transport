@@ -33,4 +33,11 @@ class MerchantController extends Controller
         
         return view('admin.showMerchants',compact('merchants'));
     }
+
+    public function displayTransDetails($id){
+
+            $trans_details = DB::table('transactions')->where('account_id', $id)->orderBy('id','desc')->paginate(10);
+            
+        return view('merchant.transDetails',compact('trans_details'));
+    }
 }

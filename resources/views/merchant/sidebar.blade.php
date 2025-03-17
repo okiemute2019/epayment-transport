@@ -33,7 +33,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('merchant.transDetails',['id'=>Auth::user()->id])}}">
           <span class="menu-title">Transaction Details</span>
           <i class="mdi mdi-cash menu-icon"></i>
         </a>
