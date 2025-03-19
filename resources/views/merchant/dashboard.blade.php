@@ -37,6 +37,8 @@
                     </h4>
                     @if($day_summary)
                     <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>{{$day_summary}}</h2>
+                    @else
+                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>0.00</h2>
                     @endif
                   </div>
                 </div>
@@ -59,7 +61,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Balance
                     </h4>
-                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>{{ Auth::user()->balance }}</h2>
+                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>@php echo number_format(Auth::user()->balance); @endphp</h2>
                   </div>
                 </div>
               </div>

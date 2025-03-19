@@ -18,6 +18,7 @@ class MerchantController extends Controller
             $bus_num = BusInfo::where('merchant_id', $user_id)->count();
             $day_summary = Transaction::where('account_id', $user_id)
             ->where('desc', '=', 'credit')
+            //->whereDate('created_at', '=', '2025-03-17')
             ->whereDate('created_at', '=', Carbon::today()->toDateString())
             ->sum('amount');
             

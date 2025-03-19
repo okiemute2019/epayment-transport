@@ -33,9 +33,10 @@
                 <div class="card bg-gradient-danger card-img-holder text-white">
                   <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Total Transaction Amount
-                    </h4>
-                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>15,000,000</h2>
+                    <h4 class="font-weight-normal mb-3">Total Transaction Amount</h4>
+                    @if($trans_amount)
+                    <h2 class="mb-5"><i class="mdi mdi-currency-ngn"></i>@php echo number_format($trans_amount); @endphp</h2>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -43,9 +44,10 @@
                 <div class="card bg-gradient-info card-img-holder text-white">
                   <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Merchants
-                    </h4>
-                    <h2 class="mb-5">44</h2>
+                    <h4 class="font-weight-normal mb-3">Merchants</h4>
+                    @if($merchant_num)
+                    <h2 class="mb-5">{{$merchant_num}}</h2>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -53,9 +55,10 @@
                 <div class="card bg-gradient-success card-img-holder text-white">
                   <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Users
-                    </h4>
-                    <h2 class="mb-5">45,000</h2>
+                    <h4 class="font-weight-normal mb-3">Users</h4>
+                    @if($user_num)
+                    <h2 class="mb-5">{{$user_num}}</h2>
+                    @endif
                   </div>
                 </div>
               </div>
@@ -64,7 +67,9 @@
                   <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Transactions</h4>
-                    <h2 class="mb-5">200,000</h2>
+                    @if($transactions)
+                    <h2 class="mb-5">{{$transactions}}</h2>
+                    @endif
                   </div>
                 </div>
               </div>
