@@ -41,4 +41,11 @@ class MerchantController extends Controller
             
         return view('merchant.transDetails',compact('trans_details'));
     }
+
+    public function displayTransSummary($id){
+
+        $trans_summary = DB::table('transactions')->where('account_id', $id)->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
+        
+    return view('merchant.transSummary',compact('trans_summary'));
+}
 }

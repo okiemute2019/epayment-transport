@@ -36,25 +36,25 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              <th>Trans ID</th>
+                              <th>ID</th>
                               <th>Desc</th>
                               <th>Amount</th>
                               <th>Date</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($trans_details as $detail)
+                            @foreach ($trans_summary as $summary)
                             <tr>
-                              <td>{{$detail->id}}</td>
-                              <td>{{$detail->desc}}</td>
-                              <td>{{$detail->amount}}</td>
-                              <td>{{$detail->created_at}}</td>
+                              <td>{{$summary->id}}</td>
+                              <td>{{$summary->desc}}</td>
+                              <td>{{$summary->amount}}</td>
+                              <td>{{$summary->created_at}}</td>
                             </tr>
                             @endforeach
                           </tbody>
                         </table>
                       </div>
-                      {{ $trans_details->onEachSide(5)->links() }}
+                      
                     </div>
                   </div>
             </div>
