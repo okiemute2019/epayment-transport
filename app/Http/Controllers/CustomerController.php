@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules;
 
 
@@ -133,11 +134,14 @@ class CustomerController extends Controller
 
     public function getMerchantRoutes($id){
         if (Auth::check()){
-            $routes = BusRoute::where('merchant_id',$id)->get();
+            //$routes = BusRoute::where('merchant_id',$id)->get();
+            $routes = DB::table('bus_routes')
+                        ->join('merchants', 'bus_routes.merchant_id', '=', 'merchants.id')
+                        ->select('bus_routes.*', 'merchants.merchantname')
+                        ->where('bus_routes.merchant_id',$id)
+                        ->get();
 
-            return response()->json([
-                'data'=>$routes
-            ],200);
+            return response()->json($routes,200);
         } else {
             return response()->json([
                 'message'=>'Unauthorized'
