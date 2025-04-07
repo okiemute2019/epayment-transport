@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
 class MerchantController extends Controller
 {
     public function index(){
@@ -18,11 +17,10 @@ class MerchantController extends Controller
             $bus_num = BusInfo::where('merchant_id', $user_id)->count();
             $day_summary = Transaction::where('account_id', $user_id)
             ->where('desc', '=', 'credit')
-            //->whereDate('created_at', '=', '2025-03-17')
             ->whereDate('created_at', '=', Carbon::today()->toDateString())
-            ->sum('amount');
-            
+            ->sum('amount');    
         }
+
         return view('merchant.dashboard',compact('bus_num','day_summary'));
     }
 
@@ -37,7 +35,7 @@ class MerchantController extends Controller
 
     public function displayTransDetails($id){
 
-            $trans_details = DB::table('transactions')->where('account_id', $id)->orderBy('id','desc')->paginate(10);
+        $trans_details = DB::table('transactions')->where('account_id', $id)->orderBy('id','desc')->paginate(10);
             
         return view('merchant.transDetails',compact('trans_details'));
     }
@@ -46,6 +44,13 @@ class MerchantController extends Controller
 
         $trans_summary = DB::table('transactions')->where('account_id', $id)->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
         
-    return view('merchant.transSummary',compact('trans_summary'));
-}
+        return view('merchant.transSummary',compact('trans_summary'));
+    }
+
+    public function displayBalHistory($id){
+
+        $bal_history = DB::table('transactions')->where('account_id', $id)->where('desc','<>','credit')->orderBy('created_at','desc')->paginate(10);
+    
+        return view('merchant.balHistory',compact('bal_history'));
+    }
 }

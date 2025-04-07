@@ -33,6 +33,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h4 class="card-title">Detailed Transactions</h4>
+                        <div class="d-flex flex-row-reverse">{{ $trans_details->links('pagination::bootstrap-4') }}</div>
                         <table class="table">
                           <thead>
                             <tr>
@@ -56,7 +57,7 @@
                           </tbody>
                         </table>
                       </div>
-                      {{ $trans_details->onEachSide(5)->links() }}
+                      <div class="row">{{ $trans_details->links('pagination::bootstrap-4') }}</div>
                     </div>
                   </div>
             </div>

@@ -51,4 +51,5 @@ Route::middleware(['auth','role:merchant'])->group(function () {
     Route::get('merchant/busList/{phone}',[BusInfoController::class,'showMerchantBuses'])->name('merchant.showBuses');
     Route::get('merchant/transDetails/{id}',[MerchantController::class,'displayTransDetails'])->name('merchant.transDetails');
     Route::get('merchant/transSummary/{id}',[MerchantController::class,'displayTransSummary'])->name('merchant.transSummary');
+    Route::get('merchant/balHistory/{id}',[MerchantController::class,'displayBalHistory'])->name('merchant.balHistory');
 });

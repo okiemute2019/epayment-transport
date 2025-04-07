@@ -32,7 +32,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Transaction Summary</h4>
+                        <h4 class="card-title">Balance History</h4>
                         
                         <table class="table">
                           <thead>
@@ -44,12 +44,12 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($trans_summary as $summary)
+                            @foreach ($bal_history as $history)
                             <tr>
-                              <td>{{$summary->id}}</td>
-                              <td>{{$summary->desc}}</td>
-                              <td>{{$summary->amount}}</td>
-                              <td>{{$summary->created_at}}</td>
+                              <td>{{$history->id}}</td>
+                              <td>{{$history->desc}}</td>
+                              <td>{{$history->amount}}</td>
+                              <td>{{$history->created_at}}</td>
                             </tr>
                             @endforeach
                           </tbody>
