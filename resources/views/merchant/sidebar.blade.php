@@ -3,7 +3,7 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <img src="{{asset('merchant/assets/images/faces/face1.jpg')}}" alt="profile">
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
@@ -44,11 +44,11 @@
           <i class="mdi mdi-cash-multiple menu-icon"></i>
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="{{route('merchant.balHistory',['id'=>Auth::user()->id])}}">
           <span class="menu-title">Balance History</span>
           <i class="mdi mdi-history menu-icon"></i>
         </a>
-      </li>
+      </li> -->
     </ul>
   </nav>
