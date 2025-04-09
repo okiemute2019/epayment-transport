@@ -51,7 +51,7 @@
                               <td>{{$busroute->routename}}</td>
                               <td>{{$busroute->merchantname}}</td>
                               <td>{{$busroute->fare}}</td>
-                              <td><i class="mdi mdi-settings-box"></i><a href="{{url('admin/deleteBusRoute/'.$busroute->id)}}" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="mdi mdi-delete"></i></a></td>
+                              <td><i class="mdi mdi-settings-box"></i><a href="{{url('admin/deleteBusRoute/'.$busroute->id)}}" onclick="return confirm('Confirm delete?')"><i class="mdi mdi-delete"></i></a></td>
                             </tr>
                             @endforeach
                           </tbody>

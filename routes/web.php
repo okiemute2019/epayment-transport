@@ -43,6 +43,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('admin/busList',[BusInfoController::class,'show'])->name('admin.showBuses');
     Route::post('admin/addBusInfo',[BusInfoController::class,'store']);
     Route::get('admin/deleteBusInfo/{id}',[BusInfoController::class, 'destroy']);
+    Route::get('admin/transDetails',[MerchantController::class,'allTransDetails'])->name('admin.transDetail');
+    Route::get('admin/transSummary',[MerchantController::class,'allTransSummary'])->name('admin.transSum');
 });
 
 Route::middleware(['auth','role:merchant'])->group(function () {
