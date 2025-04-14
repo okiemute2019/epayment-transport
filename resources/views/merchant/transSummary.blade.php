@@ -37,19 +37,19 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              <th>ID</th>
-                              <th>Desc</th>
+                              <!-- <th>ID</th> -->
+                              <!-- <th>Desc</th> -->
                               <th>Amount</th>
                               <th>Date</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($trans_summary as $summary)
+                            @foreach ($dailySums as $summary)
                             <tr>
-                              <td>{{$summary->id}}</td>
-                              <td>{{$summary->desc}}</td>
-                              <td>{{$summary->amount}}</td>
-                              <td>{{$summary->created_at}}</td>
+                              <!-- <td></td> -->
+                              <!-- <td></td> -->
+                              <td>{{$summary->day_sum}}</td>
+                              <td>{{$summary->record_date}}</td>
                             </tr>
                             @endforeach
                           </tbody>

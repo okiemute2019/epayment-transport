@@ -37,7 +37,7 @@
           <li class="nav-item"> <a class="nav-link" href="{{route('admin.showBusRoutes')}}">Route Management</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{route('admin.showBuses')}}">Bus Management</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{route('admin.transDetail')}}">Transaction Details</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">Transaction Summary</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('admin.transSum')}}">Transaction Summary</a></li>
         </ul>
       </div>
     </li>

@@ -49,15 +49,26 @@ class MerchantController extends Controller
 
     public function displayTransSummary($id){
 
-        $trans_summary = DB::table('transactions')->where('account_id', $id)->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
-        
-        return view('merchant.transSummary',compact('trans_summary'));
+        //$trans_summary = DB::table('transactions')->where('account_id', $id)->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
+        $dailySums = DB::table('transactions')
+                        ->select(DB::raw('DATE(created_at) as record_date,account_id'), DB::raw('SUM(amount) as day_sum'))
+                        ->where('account_id','=',$id)
+                        ->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])
+                        ->groupBy(DB::raw('DATE(created_at),account_id'))
+                        ->orderBy('record_date','desc')
+                        ->get();
+        return view('merchant.transSummary',compact('dailySums'));
     }
 
     public function allTransSummary(){
 
-        $alltrans_summary = DB::table('transactions')->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
-        
+        //$alltrans_summary = DB::table('transactions')->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
+        $alltrans_summary = DB::table('transactions')
+                        ->select(DB::raw('DATE(created_at) as record_date'), DB::raw('SUM(amount) as day_sum'))
+                        ->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])
+                        ->groupBy(DB::raw('DATE(created_at)'))
+                        ->orderBy('record_date','desc')
+                        ->get();
         return view('admin.transSum',compact('alltrans_summary'));
     }
 
