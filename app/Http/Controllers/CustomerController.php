@@ -71,9 +71,7 @@ class CustomerController extends Controller
 
     public function logoutUser(Request $request){
         if (session('_token')){
-        //$request->user()->currentAccessToken()->delete();
         $request->session()->invalidate();
-
 
         return response()->json([
             'message'=>'Logout Successful'
@@ -83,7 +81,6 @@ class CustomerController extends Controller
                 'message'=>'Unauthorized'
             ],401);
         }
-
     }
 
     public function updateUserProfile(Request $request){
@@ -105,13 +102,11 @@ class CustomerController extends Controller
                 'message'=>'Unauthorized'
             ],401);
         }
-
     }
 
     public function getMerchants(){
         if (Auth::check()){
             $merchants = Merchant::all();
-
             return response()->json($merchants,200);
         } else {
             return response()->json([
@@ -134,7 +129,6 @@ class CustomerController extends Controller
 
     public function getMerchantRoutes($id){
         if (Auth::check()){
-            //$routes = BusRoute::where('merchant_id',$id)->get();
             $routes = DB::table('bus_routes')
                         ->join('merchants', 'bus_routes.merchant_id', '=', 'merchants.id')
                         ->select('bus_routes.*', 'merchants.merchantname')
@@ -192,7 +186,5 @@ class CustomerController extends Controller
                 'message'=>'Unauthorized'
             ],401);
         }
-
     }
-
 }

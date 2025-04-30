@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\BusInfo;
 use App\Models\Transaction;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +26,7 @@ class MerchantController extends Controller
     public function show(){
         $merchants = DB::table('users')
             ->join('merchants', 'users.email', '=', 'merchants.email')
-            ->select('users.*', 'merchants.merchantname')
+            ->select('users.id', 'users.name', 'users.wallet_balance', 'users.email', 'merchants.merchantname')
             ->get();
         
         return view('admin.showMerchants',compact('merchants'));
@@ -49,7 +48,6 @@ class MerchantController extends Controller
 
     public function displayTransSummary($id){
 
-        //$trans_summary = DB::table('transactions')->where('account_id', $id)->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
         $dailySums = DB::table('transactions')
                         ->select(DB::raw('DATE(created_at) as record_date,account_id'), DB::raw('SUM(amount) as day_sum'))
                         ->where('account_id','=',$id)
@@ -62,7 +60,6 @@ class MerchantController extends Controller
 
     public function allTransSummary(){
 
-        //$alltrans_summary = DB::table('transactions')->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])->get();
         $alltrans_summary = DB::table('transactions')
                         ->select(DB::raw('DATE(created_at) as record_date'), DB::raw('SUM(amount) as day_sum'))
                         ->whereBetween('created_at',[Carbon::now()->firstOfMonth(),Carbon::now()->endOfMonth()])

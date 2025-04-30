@@ -55,7 +55,6 @@ class TransactionController extends Controller
             $senderBalance = Auth::user()->wallet_balance;
             $receiveruserID = $request->account_id;
             $receiveruser = User::find($receiveruserID);
-            
 
             if ($receiveruser->count() > 0)
             {
@@ -195,7 +194,6 @@ class TransactionController extends Controller
             $merchantID = $request->merchant_id;
             $merchantUser = User::find($merchantID);
             
-
             if ($merchantUser->count() > 0)
             {
                 $ticketAmount = $request->amount;
