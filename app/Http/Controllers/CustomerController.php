@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 
 
@@ -42,12 +43,28 @@ class CustomerController extends Controller
 
     public function registerUser(Request $request): JsonResponse
     {
-        $request->validate([
+        /* $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'max:11', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]); */
+
+        $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'phone' => ['required', 'string', 'max:11', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if ($validator->fails()){
+
+            return response()->json([
+                'message'=>'Registration Failed',
+                'errors'=>$validator->errors(),
+            ],422);
+
+        } else {
 
         $user = User::create([
             'name' => $request->name,
@@ -67,6 +84,7 @@ class CustomerController extends Controller
             'access_token'=>$token,
             'token_type'=>'Bearer'
         ],201);
+        }
     }
 
     public function logoutUser(Request $request){
