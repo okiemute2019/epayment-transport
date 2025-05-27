@@ -53,7 +53,7 @@ class CustomerController extends Controller
         if ($validator->fails()){
 
             return response()->json([
-                'message'=>'Registration Failed. Phone and Email must be unique',
+                'message'=>'Registration Failed. Phone and/or Email are already in use',
                 'errors'=>$validator->errors(),
             ],422);
 
